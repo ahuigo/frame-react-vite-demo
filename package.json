@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@ant-design/pro-components": "^2.6.49",
+    "@logicflow/core": "^1.2.22",
+    "@logicflow/extension": "^1.2.22",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -18,6 +18,7 @@ export const pagePaths = [
 	'pages/decorator',
 	'pages/dom/drag',
 	'pages/dom/event-resize',
+	'pages/lflow/base',
 	'pages/react/com-memo',
 	'pages/react/com-useMemo',
 	'pages/react/context/gmodal-old',
