@@ -1,36 +1,28 @@
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-
-
-const pagePaths = [
-  'pages/About',
-  'pages/Dashboard',
-] as const;
-
-
+import { pagePaths } from "./page-paths";
+const routeComponents = pagePaths.map((pagePath) => {
+  const filePath = "./" + pagePath;
+  const uriPath = pagePath.replace("pages/", "");
+  const Page = React.lazy(() => import(filePath));
+  return <Route
+    // path = "dashboard/*"
+    path={uriPath}
+    key={pagePath}
+    element={
+      <React.Suspense fallback={<>...</>}>
+        <Page />
+      </React.Suspense>
+    }
+  />;
+});
 export default function App() {
   return (
     <div>
-      <h1>Lazy Route</h1>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          {pagePaths.map((pagePath) => {
-            const filePath = "./" + pagePath;
-            const uriPath = pagePath.replace("pages/", "");
-            const Page = React.lazy(() => import(filePath));
-
-            return <Route
-              // path = "dashboard/*"
-              path={uriPath}
-              key={pagePath}
-              element={
-                <React.Suspense fallback={<>...</>}>
-                  <Page />
-                </React.Suspense>
-              }
-            />;
-          })}
+          {routeComponents}
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
@@ -40,20 +32,22 @@ export default function App() {
 
 function Layout() {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/messages">Dashboard</Link>
-          </li>
-        </ul>
-      </nav>
+    <div className="flex flex-row">
+      <div className="border-r-2 border-solid p-2">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/messages">Dashboard</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <Outlet />
     </div>
   );
@@ -62,7 +56,7 @@ function Layout() {
 function Home() {
   return (
     <div>
-      <h2>Home</h2>
+      <h2 className="text-red-500">Home</h2>
     </div>
   );
 }
