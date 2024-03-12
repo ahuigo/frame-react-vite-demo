@@ -5,8 +5,9 @@ import chokidar from 'chokidar';
 import fs from 'fs';
 // @ts-ignore
 import path from 'path';
+import _ from "lodash";
 
-function generatePagePath() {
+const generatePagePath = _.debounce(() => {
   const root = "./src/pages";
   let result: string[] = [];
 
@@ -27,7 +28,7 @@ function generatePagePath() {
   const pagePathsContent = `export const pagePaths = [\n${pagePathStr}] as const; `;
   fs.writeFileSync('./src/page-paths.ts', pagePathsContent);
   return result;
-}
+}, 500)
 
 // https://vitejs.dev/config/
 export default defineConfig({

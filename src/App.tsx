@@ -43,7 +43,7 @@ function Layout() {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/dashboard/messages">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
           </ul>
         </nav>
@@ -64,7 +64,7 @@ function Home() {
 function NoMatch() {
   return (
     <div>
-      <h2>Nothing to see here!</h2>
+      <h2>404</h2>
       <p>
         <Link to="/">Go to the home page</Link>
       </p>
