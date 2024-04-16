@@ -11,10 +11,11 @@ export default () => {
   return (
     <div className="">
       <div>
-        <ProForm onFinish={handleFormSubmit}>
+        <ProForm onFinish={handleFormSubmit} initialValues={{ left: 'url1', right: 'url2' }}>
+          {/* 看起来只是水平一行排列 */}
           <ProForm.Group>
             <ProFormText name="left" label="Left URL" />
-            <ProFormText name="right" label="Right URL" />
+            <ProFormText name="right" label="Right URLa" />
           </ProForm.Group>
         </ProForm>
       </div>

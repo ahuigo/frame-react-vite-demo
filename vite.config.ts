@@ -5,6 +5,7 @@ import chokidar from 'chokidar';
 import fs from 'fs';
 // @ts-ignore
 import path from 'path';
+import { resolve } from 'path';
 import _ from "lodash";
 
 const generatePagePath = _.debounce(() => {
@@ -17,9 +18,10 @@ const generatePagePath = _.debounce(() => {
       if (fs.statSync(absolutePath).isDirectory()) {
         getFiles(absolutePath);
       } else {
-
-        const shortPagePath = absolutePath.replace('src/', '').replace('.tsx', '');
-        result.push(shortPagePath);
+        if (absolutePath.match(/\.tsx$/)) {
+          const shortPagePath = absolutePath.replace('src/', '').replace('.tsx', '');
+          result.push(shortPagePath);
+        }
       }
     });
   }
@@ -28,10 +30,16 @@ const generatePagePath = _.debounce(() => {
   const pagePathsContent = `export const pagePaths = [\n${pagePathStr}] as const; `;
   fs.writeFileSync('./src/page-paths.ts', pagePathsContent);
   return result;
-}, 500)
+}, 500);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      '#root': resolve(__dirname)
+    }
+  },
   test: {
     // 👋 add the line below to add jsdom to vite
     environment: 'jsdom',
@@ -47,6 +55,9 @@ export default defineConfig({
 
         // add,unlink,change
         watcher.on('all', (event: any, path: string) => {
+          if (!['add', 'unlink'].includes(event)) {
+            return;
+          }
           if (path.match(/\.tsx/)) {
             console.log(`File ${path} has been ${event}`);
             generatePagePath();

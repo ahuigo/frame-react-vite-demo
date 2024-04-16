@@ -4,7 +4,7 @@ import { pagePaths } from "./page-paths";
 const routeComponents = pagePaths.map((pagePath) => {
   const filePath = "./" + pagePath;
   const uriPath = pagePath.replace("pages/", "");
-  const Page = React.lazy(() => import(filePath));
+  const Page = React.lazy(() => import(/* @vite-ignore */filePath));
   return <Route
     // path = "dashboard/*"
     path={uriPath}

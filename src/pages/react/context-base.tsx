@@ -12,7 +12,7 @@ function Count() {
   return (
     <fieldset>
       <legend>child</legend> <p>count: {count}</p>
-      <FieldContext.Consumer>{({ count }) => <div>{count}</div>}</FieldContext.Consumer>
+      <FieldContext.Consumer>{({ count }) => <div>consumer:{count}</div>}</FieldContext.Consumer>
     </fieldset>
   );
 }
@@ -32,11 +32,20 @@ export default function App() {
   return (
     <>
       <FieldContext.Provider value={{ count }}>
-        <Count />
+        <div className='border'>
+          <Count />
+        </div>
+        <div className='border'>
+          <A />
+        </div>
       </FieldContext.Provider>
       <FieldContext.Provider value={{ count: 2 }}>
-        <Count />
-        <A />
+        <div className='border'>
+          <Count />
+        </div>
+        <div className='border'>
+          <A />
+        </div>
       </FieldContext.Provider>
 
     </>
