@@ -1,23 +1,25 @@
 import React from "react";
 
 function Com({ onChange, title }: { onChange?: (v: any) => void, title?: string; }) {
-  return <div className="flex flex-col m-8">
-    title:{title}
+  return <div className="flex flex-col">
+    inner title:{title}
     <input onChange={(e) => onChange?.(e.target.value)} defaultValue={"1"} />
   </div>;
 }
 
 export default () => {
-  // return <div>sssss</div>;
-  const child = <Com />;
+  const [value, setValue] = React.useState('');
+  const child = <Com title="inner prop" />;
   const props = {
     ...(child as React.ReactElement).props,
-    title: 'new title',
-    onChange: (v: any) => console.log(v),
+    onChange: setValue,
   };
   const vnode = React.cloneElement(
     child as React.ReactElement,
     props,
   );
-  return vnode;
+  return <div className="m-10">
+    outer value:{value}
+    {vnode}
+  </div>;
 };
