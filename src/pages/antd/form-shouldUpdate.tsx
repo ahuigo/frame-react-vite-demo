@@ -21,7 +21,12 @@ export default () => {
         { value: 'frame2', label: 'Frame2' },
       ]}
     />
-    <Form.Item noStyle shouldUpdate>
+    <Form.Item noStyle
+      // shouldUpdate
+      shouldUpdate={(prevValues, currentValues) =>
+        prevValues.username !== currentValues.username// 仅在用户名改变时触发
+      }
+    >
       {() => {
         const username = form.getFieldValue("username");
         console.log(username);
@@ -31,7 +36,7 @@ export default () => {
             name="password"
             rules={[
               {
-                required: form.getFieldValue("username") === "111",
+                required: form.getFieldValue("username") === "Alex",
                 message: "Please input your password!"
               }
             ]}
