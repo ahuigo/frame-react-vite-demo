@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import { Graph, Node } from '@antv/x6';
 import { Button, Tooltip } from 'antd';
-import { register, Portal } from '@/utils/x6-plugin/x6-react-shape';
-// import { register, Portal } from '@antv/x6-react-shape';
+// import { register, Portal } from '@/utils/x6-plugin/x6-react-shape';
+import { register, Portal } from '@antv/x6-react-shape';
 // import { MiniMap } from '@/utils/x6-plugin/minimap';
 import { MiniMap } from '@antv/x6-plugin-minimap';
 
