@@ -1,47 +1,20 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react-swc';
 import chokidar from 'chokidar';
+import { generatePagePath } from './vite/watch';
 // @ts-ignore
-import fs from 'fs';
-// @ts-ignore
-import path from 'path';
-import { resolve } from 'path';
+import { resolve as pathResolve } from 'path';
 import _ from "lodash";
-
-const generatePagePath = _.debounce(() => {
-  const root = "./src/pages";
-  let result: string[] = [];
-
-  function getFiles(dir: string) {
-    fs.readdirSync(dir).forEach((file: string) => {
-      const absolutePath = path.join(dir, file);
-      if (fs.statSync(absolutePath).isDirectory()) {
-        getFiles(absolutePath);
-      } else {
-        if (absolutePath.match(/\.tsx$/)) {
-          const shortPagePath = absolutePath.replace('src/', '').replace('.tsx', '');
-          result.push(shortPagePath);
-        }
-      }
-    });
-  }
-  getFiles(root);
-  const pagePathStr = result.map(v => `\t'${v}',\n`).join('');
-  const pagePathsContent = `export const pagePaths = [\n${pagePathStr}] as const; `;
-  fs.writeFileSync('./src/page-paths.ts', pagePathsContent);
-  return result;
-}, 500);
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '#root': resolve(__dirname)
+      '@': pathResolve(__dirname, 'src'),
+      '#root': pathResolve(__dirname)
     }
   },
   test: {
-    // 👋 add the line below to add jsdom to vite
     environment: 'jsdom',
   },
   plugins: [
@@ -52,10 +25,9 @@ export default defineConfig({
         const watcher = chokidar.watch('src/pages', {
           ignoreInitial: true,
         });
-
-        // add,unlink,change
         watcher.on('all', (event: any, path: string) => {
-          if (!['add', 'unlink'].includes(event)) {
+          console.log('abc:', event, path);
+          if (!['add', 'unlink', 'change'].includes(event)) {
             return;
           }
           if (path.match(/\.tsx/)) {

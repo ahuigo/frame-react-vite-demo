@@ -10,5 +10,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true
   },
+  "files":["./vite/**/*.ts", "./vite/watch.ts"],
   "include": ["vite.config.ts"]
 }

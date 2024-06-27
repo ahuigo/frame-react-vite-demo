@@ -48,10 +48,8 @@ export function MapboxContainer(props: Props) {
 
   // const children2 = React.memo(ch ildren);
   return (<>
-    <div className='flex'>
-        <div id="mapboxdiv" className='flex h-96 w-72' />
-      {mapbox && children}
-    </div>
+    <div id="mapboxdiv" className='flex flex-1 h-96 w-72' />
+    {mapbox && children}
     {/* <MapboxContext.Provider value={{ mapbox: 2 }}>
         <Heatmap />
       </MapboxContext.Provider> */}

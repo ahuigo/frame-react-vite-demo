@@ -26,7 +26,7 @@ export function gmodal2(children: React.ReactElement, id = 'modal2-root') {
   // const dom = <ThemeContext.Provider value={{ count: 2 }}>{children}</ThemeContext.Provider>;
 
   const dom = (
-    <div className={styles.gmodalMask}>
+    <div className="gmodalMask">
       <div className="gmodal">
         {children}
         <Button type="primary" onClick={() => unmount()}>Close</Button>

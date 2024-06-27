@@ -30,6 +30,8 @@ export default () => {
 
   return (
     <ProTable<dataItem>
+      // style={{ width: '100%' }}
+      className='w-full'
       columns={columns}
       cardBordered
       editable={{ type: 'multiple', }}
