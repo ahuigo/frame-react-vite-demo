@@ -9,6 +9,7 @@ const Child = React.memo(Com, (prevProps, nextProps) => {
   console.log({ prevProps, nextProps });
   return prevProps.name == nextProps.name;
 });
+
 export default () => {
   const [count, incr2] = useState(0);
   return <div>

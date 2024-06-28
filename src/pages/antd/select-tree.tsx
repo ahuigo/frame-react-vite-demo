@@ -29,6 +29,7 @@ export const CustomTreeSelect = ({ treeData, ...props }: Record<string, any>) =>
     treeData={treeData}
     style={{ width: '100%', marginTop: 8 }}
     value={selectedValues}
+    open={true}
     onChange={handleChange}
   />);
 };

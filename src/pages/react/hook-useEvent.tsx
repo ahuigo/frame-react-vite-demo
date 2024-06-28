@@ -13,18 +13,19 @@ function useEvent(callback: Function) {
 }
 
 export default () => {
-  const [msg, setMsg] = useState('');
-  const [msg2, sendMsg] = useState('');
+  const [msg1, setMsg1] = useState('1');
+  const [msg2, setMsg2] = useState('');
 
   const onClick = useEvent(() => {
-    sendMsg(msg);// 每次渲染onClick不仅指向同一引用, 但与useCallback 不同, 内部current变化. 不用担心msg 闭包问题. 
+    setMsg2(msg1);// 每次渲染onClick不仅指向同一引用, 但与useCallback 不同, 内部current会变化. 不用担心msg 闭包问题. 
   });
 
 
   return <div>
-    <div>received msg: {msg2}</div>
-    <button onClick={() => setMsg("changeMsg")}>1.changeMsg</button>
-    <button onClick={onClick}>2.sendMsg</button>
+    <div>received msg1: {msg1}</div>
+    <div>received msg2: {msg2}</div>
+    <button onClick={() => setMsg1("setMsg1")}>1.setMsg1</button>
+    <button onClick={onClick}>2.setMsg2</button>
   </div>;
 
 };
