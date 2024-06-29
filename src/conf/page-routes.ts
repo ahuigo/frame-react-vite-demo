@@ -87,10 +87,6 @@ export const pagePaths:PageRoute[] = [
     ]
   },
   {
-    "key": "decorator.tsx",
-    "label": "decorator"
-  },
-  {
     "key": "dom",
     "label": "dom",
     "children": [
