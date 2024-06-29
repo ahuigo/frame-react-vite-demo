@@ -159,6 +159,22 @@ export const pagePaths:PageRoute[] = [
     "label": "react",
     "children": [
       {
+        "key": "b",
+        "label": "b",
+        "children": [
+          {
+            "key": "c",
+            "label": "c",
+            "children": [
+              {
+                "key": "a.tsx",
+                "label": "a"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "key": "com-memo.tsx",
         "label": "com-memo"
       },
@@ -236,10 +252,6 @@ export const pagePaths:PageRoute[] = [
         "key": "redux",
         "label": "redux",
         "children": [
-          {
-            "key": "a.tsx",
-            "label": "a"
-          },
           {
             "key": "redux-connect.tsx",
             "label": "redux-connect"

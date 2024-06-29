@@ -16,18 +16,32 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 function genRouteComponents(dir: string, pageRoutes: PageRoute[]) {
   return pageRoutes.map((pageRoute) => {
-    const filePath = `${dir}/${pageRoute.key}`;
-    // const uriPath = `${uriDir}/${pageRoute.key}`;
     const uriPath = pageRoute.key.replace('.tsx', '');
     const isFile = pageRoute.key.match(/\.tsx$/);
-    // console.log({ uriPath, filePath });
-    const Page: React.LazyExoticComponent<React.ComponentType<any>> = React.lazy(() => import(/* @vite-ignore */filePath));
-    // console.log(pageRoute.key, filePath, pageRoute);
+    const filePath = `${dir}/${pageRoute.key}`;
+    const hmrPathSegs = `${dir}/${uriPath}`.replace('./pages/', '').split('/');
+    // To solve dynamic import limit: https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
+    let Page: React.LazyExoticComponent<React.ComponentType<any>>;
+    if (hmrPathSegs.length === 1) {
+      const [a] = hmrPathSegs;
+      Page = React.lazy(() => import(`./pages/${a}.tsx`));
+    } else if (hmrPathSegs.length === 2) {
+      const [a, b] = hmrPathSegs;
+      Page = React.lazy(() => import(`./pages/${a}/${b}.tsx`));
+    } else if (hmrPathSegs.length === 3) {
+      const [a, b, c] = hmrPathSegs;
+      Page = React.lazy(() => import(`./pages/${a}/${b}/${c}.tsx`));
+    } else if (hmrPathSegs.length === 4) {
+      const [a, b, c, d] = hmrPathSegs;
+      Page = React.lazy(() => import(`./pages/${a}/${b}/${c}/${d}.tsx`));
+    } else {
+      Page = React.lazy(() => import(/* @vite-ignore */filePath));
+    }
     return <Route
       path={uriPath}
       key={pageRoute.key}
       element={isFile &&
-        <React.Suspense fallback={<>...</>}>
+        <React.Suspense fallback={<>loading...</>}>
           <Page />
         </React.Suspense>
       }
@@ -37,28 +51,13 @@ function genRouteComponents(dir: string, pageRoutes: PageRoute[]) {
   });
 }
 
-const routeComponents = ['pages/dom/drag'].map((pagePath) => {
-  const filePath = "./" + pagePath;
-  const uriPath = pagePath.replace("pages/", "");
-  const Page = React.lazy(() => import(/* @vite-ignore */filePath));
-  return <Route
-    // path = "dashboard/*"
-    path={uriPath}
-    key={pagePath}
-    element={
-      <React.Suspense fallback={<>...</>}>
-        <Page />
-      </React.Suspense>
-    }
-  />;
-});
 export default function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          {/* {routeComponents} */}
+          {/* dynamic routes */}
           {genRouteComponents("./pages", pagePaths)}
           <Route path="/foo">
             <Route path="/foo-one" element={<div>f one 无效</div>} />

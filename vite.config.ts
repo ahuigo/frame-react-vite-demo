@@ -26,7 +26,6 @@ export default defineConfig({
           ignoreInitial: true,
         });
         watcher.on('all', (event: any, path: string) => {
-          console.log('abc:', event, path);
           if (!['add', 'unlink', 'change'].includes(event)) {
             return;
           }

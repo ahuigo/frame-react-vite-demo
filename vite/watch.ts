@@ -61,10 +61,6 @@ export const generatePagePath = _.debounce(async () => {
   }
   const menuItems = await genMenuItemFromRoot(root, []);
   const menuItemsjs = JSON.stringify(menuItems, null, 2);
-  console.log(menuItemsjs);
-  // const pagePathStr = pagePath.map(v => {
-  //   return `\t{path:'${v.path}',title:'${v.title}'},\n`;
-  // }).join('');
   const pagePathsContent = `import { PageRoute } from './page-routes.d';
 export const pagePaths:PageRoute[] = ${menuItemsjs} as const; `;
   fs.writeFileSync('./src/conf/page-routes.ts', pagePathsContent);
