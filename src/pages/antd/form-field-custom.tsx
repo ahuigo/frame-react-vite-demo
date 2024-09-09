@@ -51,8 +51,8 @@ export default () => {
         { value: 'frame2', label: 'Frame2' },
       ]}
     />
-    <ProFormText2 name="cname1" placeholder={"cvalue1"} label="cname1" />
-    <FormText2 name="cname2" placeholder={"cvalue2"} label="" />
+    <ProFormText2 label="cname1" name="cname1" placeholder={"cvalue1"} />
+    <FormText2 label="" name="cname2" placeholder={"cvalue2"} />
     <Form.Item
       label="Password"
       name="password"

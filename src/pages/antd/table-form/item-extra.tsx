@@ -6,13 +6,12 @@ export const waitTime = async (time: number = 100) => {
   await new Promise((resolve) => { setTimeout(resolve, time); });
 };
 
-type GithubIssueItem = {
-  url: string;
+type IssueItem = {
   id: number;
   title: string;
 };
 
-const columns: ProColumns<GithubIssueItem>[] = [
+const columns: ProColumns<IssueItem>[] = [
   {
     title: '标题',
     dataIndex: 'title',
@@ -35,7 +34,7 @@ const columns: ProColumns<GithubIssueItem>[] = [
 export default () => {
   const actionRef = useRef<ActionType>();
   return (
-    <ProTable<GithubIssueItem>
+    <ProTable<IssueItem>
       columns={columns}
       actionRef={actionRef}
       cardBordered
@@ -47,13 +46,16 @@ export default () => {
       request={async (params, sort, filter) => {
         console.log(params, sort, filter);
         await waitTime(1000);
-        const url = new URL('https://proapi.azurewebsites.net/github/issues');
-        for (const [k, v] of Object.entries(params)) {
-          url.searchParams.append(k, String(v));
-        }
-        return fetch(url).then(r => r.json()) as Promise<{
-          data: GithubIssueItem[];
-        }>;
+        const data = [
+          {
+            "id": 624748504,
+            "title": "命令 会报错",
+            "state": "20",
+          },
+        ];
+        return Promise.resolve({
+          data: data as IssueItem[],
+        })
       }}
       editable={{ type: 'multiple', }}
       rowKey="id"

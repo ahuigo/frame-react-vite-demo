@@ -14,6 +14,9 @@ export default defineConfig({
       '#root': pathResolve(__dirname)
     }
   },
+  server: {
+    host: "0.0.0.0",
+  },
   test: {
     environment: 'jsdom',
   },

@@ -5,6 +5,28 @@ export const pagePaths:PageRoute[] = [
     "label": "antd",
     "children": [
       {
+        "key": "form-field",
+        "label": "form-field",
+        "children": [
+          {
+            "key": "select-multiple.tsx",
+            "label": "select-multiple"
+          },
+          {
+            "key": "select-search.tsx",
+            "label": "select-search"
+          },
+          {
+            "key": "select-tags.tsx",
+            "label": "select-tags"
+          },
+          {
+            "key": "select-tree.tsx",
+            "label": "select-tree"
+          }
+        ]
+      },
+      {
         "key": "form-field-custom.tsx",
         "label": "form-field-custom"
       },
@@ -37,44 +59,58 @@ export const pagePaths:PageRoute[] = [
         "label": "form-synctourl"
       },
       {
-        "key": "select-tree.tsx",
-        "label": "select-tree"
-      },
-      {
         "key": "table-column-opts.tsx",
         "label": "table-column-opts"
       },
       {
-        "key": "table-form-custom.tsx",
-        "label": "table-form-custom"
+        "key": "table-column-search.tsx",
+        "label": "table-column-search"
       },
       {
-        "key": "table-form-init.tsx",
-        "label": "table-form-init"
-      },
-      {
-        "key": "table-form-item-extra.tsx",
-        "label": "table-form-item-extra"
-      },
-      {
-        "key": "table-form-item-type.tsx",
-        "label": "table-form-item-type"
-      },
-      {
-        "key": "table-form-item-update.tsx",
-        "label": "table-form-item-update"
-      },
-      {
-        "key": "table-form-props.tsx",
-        "label": "table-form-props"
-      },
-      {
-        "key": "table-form-submit-reload.tsx",
-        "label": "table-form-submit-reload"
-      },
-      {
-        "key": "table-form-toolbar.tsx",
-        "label": "table-form-toolbar"
+        "key": "table-form",
+        "label": "table-form",
+        "children": [
+          {
+            "key": "form-custom.tsx",
+            "label": "form-custom"
+          },
+          {
+            "key": "form-init.tsx",
+            "label": "form-init"
+          },
+          {
+            "key": "form-props.tsx",
+            "label": "form-props"
+          },
+          {
+            "key": "form-submit-reload.tsx",
+            "label": "form-submit-reload"
+          },
+          {
+            "key": "form-toolbar.tsx",
+            "label": "form-toolbar"
+          },
+          {
+            "key": "item-date.tsx",
+            "label": "item-date"
+          },
+          {
+            "key": "item-extra.tsx",
+            "label": "item-extra"
+          },
+          {
+            "key": "item-rule.tsx",
+            "label": "item-rule"
+          },
+          {
+            "key": "item-select-tree.tsx",
+            "label": "item-select-tree"
+          },
+          {
+            "key": "item-update.tsx",
+            "label": "item-update"
+          }
+        ]
       },
       {
         "key": "table-pager.tsx",
@@ -154,22 +190,6 @@ export const pagePaths:PageRoute[] = [
     "key": "react",
     "label": "react",
     "children": [
-      {
-        "key": "b",
-        "label": "b",
-        "children": [
-          {
-            "key": "c",
-            "label": "c",
-            "children": [
-              {
-                "key": "a.tsx",
-                "label": "a"
-              }
-            ]
-          }
-        ]
-      },
       {
         "key": "com-memo.tsx",
         "label": "com-memo"

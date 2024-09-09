@@ -28,6 +28,8 @@ const columns: ProColumns<GithubIssueItem>[] = [
   {
     title: '标题',
     dataIndex: 'title',
+    width: 100,
+    fixed: 'left',// 左固定
     copyable: true,
     ellipsis: true, // 超长自动收缩
     filters: true, // 是否显示过滤器

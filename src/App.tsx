@@ -120,7 +120,7 @@ const LeftMenu = () => {
   const defaultSelectedKeys = React.useState(() => {
     const paths = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
     return paths;
-  })[0]
+  })[0];
   return (
     <div className="w-[256px] relative overflow-y-auto">
       <LeftCircleOutlined onClick={toggleCollapsed} className="absolute right-0 hidden" />
@@ -144,7 +144,9 @@ function Layout() {
         <LeftMenu />
       </div>
       <div className="flex flex-1">
-        <Outlet />
+        <div className="flex-grow">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

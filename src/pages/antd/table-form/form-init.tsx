@@ -116,6 +116,7 @@ export default () => {
       search={{
         labelWidth: 'auto',
       }}
+      // 方法一：配置 syncToUrl
       form={{
         initialValues: {
           title: 'init title', // set the initial value for 'title'
@@ -131,6 +132,11 @@ export default () => {
           return values;
         },
       }}
+      // 方法二：
+      // const formRef = useRef<ProFormInstance>();
+      // formRef?.current?.setFieldValue(key, value.replace('+', ' '));
+      // form={formRef}
+
     />
   );
 };

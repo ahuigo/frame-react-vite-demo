@@ -36,37 +36,33 @@ const treeData = [
     ],
   },
 ];
-type GithubIssueItem = {
-  url: string;
-  id: number;
-  number: number;
-  title: string;
-  labels: {
-    name: string;
-    color: string;
-  }[];
-  state: string;
-  comments: number;
-  created_at: string;
-  updated_at: string;
-  closed_at?: string;
+type IssueItem = {
 };
 
-const columns: ProColumns<GithubIssueItem>[] = [
+const columns: ProColumns<IssueItem>[] = [
   {
-    title: '标题',
-    dataIndex: 'title',
-    tip: '标题过长会自动收缩',
-    renderFormItem: (_, { defaultRender, record }) => {
-      return defaultRender(_);
+    disable: true,
+    title: '状态',
+    dataIndex: 'state',
+    valueType: 'select',//https://procomponents.ant.design/components/schema#valuetype-%E5%88%97%E8%A1%A8
+    fieldProps: {
+      showSearch: true,
+      // mode: 'tags',
+      // multiple: true,
     },
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
+    valueEnum: {
+      // all: '超长', // 简写：如果不需要状态
+      all: { text: '超长'.repeat(3) },
+      // open: '未解决', // 简写：如果不需要状态
+      open: {
+        text: '未解决',
+        status: 'Error',
+      },
+      closed: {
+        text: '已解决',
+        status: 'Success',
+        disabled: true,
+      },
     },
   },
   {
@@ -92,51 +88,12 @@ const columns: ProColumns<GithubIssueItem>[] = [
       );
     },
   },
-  {
-    disable: true,
-    title: '状态',
-    dataIndex: 'state',
-    valueType: 'select',//https://procomponents.ant.design/components/schema#valuetype-%E5%88%97%E8%A1%A8
-    valueEnum: {
-      all: { text: '超长'.repeat(3) },
-      open: {
-        text: '未解决',
-        status: 'Error',
-      },
-      closed: {
-        text: '已解决',
-        status: 'Success',
-        disabled: true,
-      },
-    },
-  },
-  {
-    title: '时间',
-    key: 'showTime',
-    dataIndex: 'created_at',
-    valueType: 'date',
-    sorter: true,
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'created_at',
-    valueType: 'dateRange',
-    hideInTable: true,
-    search: {
-      transform: (value) => {
-        return {
-          startTime: value[0],
-          endTime: value[1],
-        };
-      },
-    },
-  },
 ];
 
 export default () => {
   const actionRef = useRef<ActionType>();
   return (
-    <ProTable<GithubIssueItem>
+    <ProTable<IssueItem>
       columns={columns}
       actionRef={actionRef}
       cardBordered
@@ -151,11 +108,11 @@ export default () => {
       }}
       form={{
         initialValues: {
-          title: 'test', tags: ['a', 'b'],
+          tags: ['a', 'b'],
           tree: ['leaf1', 'yourleaf'],
         },
         onValuesChange: (changedValues, allValues) => {
-          console.log(changedValues); // values that have changed
+          console.log(changedValues);
         },
       }}
       dateFormatter="string"
