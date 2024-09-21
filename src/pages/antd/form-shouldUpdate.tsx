@@ -11,7 +11,10 @@ export default () => {
       </div>,
     }}
     form={form}
-    onFinish={(values) => Promise.resolve()}
+    onFinish={(values) => {
+      console.log(values);
+      return Promise.resolve();
+    }}
   >
     <ProFormSelect
       name="username"
