@@ -1,5 +1,5 @@
 import LogicFlow from "@logicflow/core";
-import "@logicflow/core/dist/style/index.css";
+import '@logicflow/core/es/index.css';
 import { useEffect, useRef } from "react";
 // import { EllipseNode, EllipseNodeModel } from "@logicflow/core";
 
@@ -51,6 +51,7 @@ export default function App() {
       height: 500,
     });
     lf.render(graphData);
+    lf.translateCenter();
   }, []);
   return <div>
     <style>

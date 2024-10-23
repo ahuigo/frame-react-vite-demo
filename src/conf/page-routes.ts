@@ -9,8 +9,16 @@ export const pagePaths:PageRoute[] = [
         "label": "form-field",
         "children": [
           {
+            "key": "custom.tsx",
+            "label": "custom"
+          },
+          {
             "key": "select-multiple.tsx",
             "label": "select-multiple"
+          },
+          {
+            "key": "select-onkeydown.tsx",
+            "label": "select-onkeydown"
           },
           {
             "key": "select-search.tsx",
@@ -27,10 +35,6 @@ export const pagePaths:PageRoute[] = [
         ]
       },
       {
-        "key": "form-field-custom.tsx",
-        "label": "form-field-custom"
-      },
-      {
         "key": "form-group-nested-key.tsx",
         "label": "form-group-nested-key"
       },
@@ -41,6 +45,10 @@ export const pagePaths:PageRoute[] = [
       {
         "key": "form-group.tsx",
         "label": "Form Group16"
+      },
+      {
+        "key": "form-layout-submit.tsx",
+        "label": "form-layout-submit"
       },
       {
         "key": "form-layout.tsx",
@@ -145,12 +153,26 @@ export const pagePaths:PageRoute[] = [
         "label": "node-base"
       },
       {
-        "key": "node-custom-model.tsx",
-        "label": "node-custom-model"
+        "key": "node-custom",
+        "label": "node-custom",
+        "children": [
+          {
+            "key": "custom-model.tsx",
+            "label": "custom-model"
+          },
+          {
+            "key": "custom-node.tsx",
+            "label": "custom-node"
+          }
+        ]
       },
       {
-        "key": "node-custom-node.tsx",
-        "label": "node-custom-node"
+        "key": "node-custom-node1.tsx",
+        "label": "node-custom-node1"
+      },
+      {
+        "key": "node-view.tsx",
+        "label": "node-view"
       }
     ]
   },
