@@ -1,4 +1,3 @@
-import chokidar from 'chokidar';
 // @ts-ignore
 import fs, { createReadStream } from 'fs';
 // @ts-ignore

@@ -53,14 +53,34 @@ export default () => {
       cardBordered
       request={async (params, sort, filter) => {
         console.log(params, sort, filter);
-        await waitTime(500);
+        await waitTime(301);
         const url = new URL('https://proapi.azurewebsites.net/github/issues');
         for (const [k, v] of Object.entries(params)) {
           url.searchParams.append(k, String(v));
         }
-        return fetch(url).then(r => r.json()) as Promise<{
+        const data1 = [
+          {
+            "id": 624748504,
+            "title": "🐛 [BUG]yarn install命令 antd2.4.5会报错",
+          },
+          {
+            "id": 624691229,
+            "title": "🐛 [BUG]无法创建工程npm create umi",
+          },
+        ];
+        const data = data1.filter((row) => {
+          if (params?.title) {
+            return row.title.includes(params.title);
+          }
+          return true;
+        });
+
+        return Promise.resolve({
+          data: data, total: 20
+        }) as Promise<{
           data: GithubIssueItem[]; total: number;
         }>;
+
       }}
       rowKey="id"
       pagination={{

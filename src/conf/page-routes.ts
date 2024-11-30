@@ -13,6 +13,22 @@ export const pagePaths:PageRoute[] = [
             "label": "custom"
           },
           {
+            "key": "group-iframe.tsx",
+            "label": "Form Group16"
+          },
+          {
+            "key": "group-list.tsx",
+            "label": "group-list"
+          },
+          {
+            "key": "group-nested-key.tsx",
+            "label": "group-nested-key"
+          },
+          {
+            "key": "group-shouldUpdate.tsx",
+            "label": "group-shouldUpdate"
+          },
+          {
             "key": "select-multiple.tsx",
             "label": "select-multiple"
           },
@@ -33,18 +49,6 @@ export const pagePaths:PageRoute[] = [
             "label": "select-tree"
           }
         ]
-      },
-      {
-        "key": "form-group-nested-key.tsx",
-        "label": "form-group-nested-key"
-      },
-      {
-        "key": "form-group-shouldUpdate.tsx",
-        "label": "form-group-shouldUpdate"
-      },
-      {
-        "key": "form-group.tsx",
-        "label": "Form Group16"
       },
       {
         "key": "form-layout-submit.tsx",
@@ -73,6 +77,10 @@ export const pagePaths:PageRoute[] = [
       {
         "key": "table-column-search.tsx",
         "label": "table-column-search"
+      },
+      {
+        "key": "table-filter.tsx",
+        "label": "table-filter"
       },
       {
         "key": "table-form",
@@ -125,8 +133,8 @@ export const pagePaths:PageRoute[] = [
         "label": "table-pager"
       },
       {
-        "key": "table-select.tsx",
-        "label": "table-select"
+        "key": "table-select-batch.tsx",
+        "label": "table-select-batch"
       }
     ]
   },
