@@ -12,6 +12,8 @@ HMR 依赖vite 静态分析 `import(..)`, 为了分析出import 要watch的文�
     // allowed
     import(`./module-${foo}.js`);
 
-如果忽略分析的话,可以:
+如果忽略分析的话,可以这样(会丢失HMR加载功能):
 
     const Page: React.LazyExoticComponent<React.ComponentType<any>> = React.lazy(() => import(/* @vite-ignore */filePath));
+
+参考/src/App.tsx
