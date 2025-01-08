@@ -9,6 +9,10 @@ export const pagePaths:PageRoute[] = [
         "label": "form-field",
         "children": [
           {
+            "key": "a.tsx",
+            "label": "a"
+          },
+          {
             "key": "custom.tsx",
             "label": "custom"
           },

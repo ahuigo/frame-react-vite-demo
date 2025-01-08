@@ -1,8 +1,6 @@
-import { ProTable, ProForm, ProFormText, ProFormSelect } from '@ant-design/pro-components';
-import { type ProFormItemProps } from '@ant-design/pro-components';
-import { Button, Form, Input } from 'antd';
-import { type InputProps } from 'antd';
+import { ProForm, ProFormSelect, type ProFormItemProps } from '@ant-design/pro-components';
 import type { FormItemProps } from 'antd';
+import { Button, Form, Input, type InputProps } from 'antd';
 
 function Input2(props: InputProps) {
   const { onChange } = props;
@@ -17,9 +15,13 @@ function Input2(props: InputProps) {
     />
   );
 }
+
+// Recommend!!!!
 const ProFormText2 = (props: ProFormItemProps) => {
   return (
     <ProForm.Item {...props}>
+      {/* 其实不会加props，　<Input2/> 会自动注入id(name),value,onChange
+      // @ts-ignore */}
       <Input2 {...props.fieldProps} placeholder={props.placeholder as string} />
     </ProForm.Item>
   );

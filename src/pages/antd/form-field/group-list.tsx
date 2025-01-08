@@ -5,6 +5,8 @@ import {
   Row,
   Col,
   Card,
+  Space,
+  Input,
 } from 'antd';
 
 import {
@@ -14,6 +16,7 @@ import {
   ProFormText,
   ProFormDependency,
 } from "@ant-design/pro-components";
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 interface FstMeta {
 
 }
@@ -30,6 +33,7 @@ export default function index(props: Props) {
   const [form] = Form.useForm();
   // onFinish
   const onFinish = async (data: FstMeta) => {
+    console.log(data)
     try {
       await {};
     } catch {
@@ -82,6 +86,20 @@ export default function index(props: Props) {
           </Col>
           <Col span={24}>
             <ProFormList
+              name={['hook', 'http', 'headers']}
+              label={`extra headers`}
+            >
+              {/* group 组合成一行 */}
+              <ProForm.Group>
+                <ProFormText name="key" width="md" />
+                <ProForm.Item>=</ProForm.Item>
+                <ProFormText name="value" width="md" />
+              </ProForm.Group>
+            </ProFormList>
+          </Col>
+          {/* 利用Row/col 布局 */}
+          <Col span={24}>
+            <ProFormList
               label={<span className="font-bold font-mono uppercase">headers</span>}
               name="headers"
               alwaysShowItemLabel
@@ -110,6 +128,39 @@ export default function index(props: Props) {
                 </Col>
               </Row>
             </ProFormList>
+          </Col>
+          <Col span={24}>
+            {/* 原生的Form.List */}
+            <Form.List name="paramsRaw">
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <Space key={key} style={{ display: 'flex', marginBottom: 8 }} align="baseline">
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'key']}
+                        rules={[{ required: true, message: 'Missing key' }]}
+                      >
+                        <Input placeholder="Key" />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'value']}
+                        rules={[{ required: true, message: 'Missing value' }]}
+                      >
+                        <Input placeholder="Value" />
+                      </Form.Item>
+                      <MinusCircleOutlined onClick={() => remove(name)} />
+                    </Space>
+                  ))}
+                  <Form.Item>
+                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                      Add Param
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
           </Col>
         </Row>
       </ProForm>
